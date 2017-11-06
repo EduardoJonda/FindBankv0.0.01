@@ -2,14 +2,14 @@ package com.findbank.c15.dao;
 
 import java.util.List;
 
-import com.findbank.c15.model.Country;
+import com.findbank.c15.model.Agentes;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CountryDAO {
+public class AgentesDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -18,32 +18,32 @@ public class CountryDAO {
 		this.sessionFactory = sf;
 	}
 
-	public List<Country> getAllCountries() {
+	public List<Agentes> getAllAgentes() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Country> countryList = session.createQuery("from Country").list();
-		return countryList;
+		List<Agentes> agentesList = session.createQuery("from Agentes").list();
+		return agentesList;
 	}
 
-	public Country getCountry(int id) {
+	public Agentes getAgentes(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Country country = (Country) session.get(Country.class, new Integer(id));
-		return country;
+		Agentes agentes = (Agentes) session.get(Agentes.class, new Integer(id));
+		return agentes;
 	}
 
-	public Country addCountry(Country country) {
+	public Agentes addAgentes(Agentes agentes) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(country);
-		return country;
+		session.persist(agentes);
+		return agentes;
 	}
 
-	public void updateCountry(Country country) {
+	public void updateAgentes(Agentes agentes) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(country);
+		session.update(agentes);
 	}
 
-	public void deleteCountry(int id) {
+	public void deleteAgentes(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Country p = (Country) session.load(Country.class, new Integer(id));
+		Agentes p = (Agentes) session.load(Agentes.class, new Integer(id));
 		if (null != p) {
 			session.delete(p);
 		}
