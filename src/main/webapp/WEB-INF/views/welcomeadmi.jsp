@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:f="http://java.sun.com/jsf/core"
@@ -9,27 +11,36 @@
 
 <h:head>
   <meta charset="utf-8">
-   
-  <link href='css/rotating-card.css' rel='stylesheet' />
-  <link href="/css/font-awesome.min.css" rel="stylesheet"> 
-
+    
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Administrador de Find Bank</title>
+  
+     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.3.3.7.min.css"/>">
+	
+	<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>"></script> 
+	 <script src="<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>"></script>
+	
   <!-- Bootstrap core CSS-->
    <link rel="stylesheet" href="<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css"/>">
   <!-- Custom fonts for this template-->
   <link rel="stylesheet" href="<c:url value="/resources/vendor/font-awesome/css/font-awesome.min.css"/>">
   <!-- Custom styles for this template-->
   <link rel="stylesheet" href="<c:url value="/resources/css/sb-admin.css"/>">
+  <style>
+  .modal-content {
+  margin-top: 200px;
+  }
+  </style>
 </h:head>
 
 <h:body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
+   
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="administrador">Find Bank</a>
+    <a class="navbar-brand" href="/c15/administrador">Find Bank</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,15 +48,9 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
          
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="administrador">
+          <a class="nav-link" href="/c15/administrador">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Agentes</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="map.html">
-          <i class="fa fa-map-o"  ></i>
-            <span class="nav-link-text">Map</span>
           </a>
         </li>
         
@@ -65,61 +70,151 @@
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
+      <ol >
+    <br/> <br/>
+      </ol>
+       <ol >
+    <br/> <br/>
+      </ol>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="administrador">Find Bank</a>
+          <a href="/administrador">Find Bank</a>
         </li>
         <li class="breadcrumb-item active">Agentes</li>
       </ol>
       <h1>Agentes</h1>
       <hr>
-      <!-- Icon Cards-->
+      <!-- Formulario de edit modal-->
+   <div class="modal fade" id="crearCardModal" tabindex="-1" role="dialog" aria-labelledby="eModalLabel" aria-hidden="false">
+  <div class="modal-dialog" role="document">
+  
+   <div class="modal-content" id="modalcontenido" >
+   
+      <div class="modal-header">
+       
+       <center> <h3 class="modal-title" id="eModalLabel">Editar Agente</h3>  
+        </button> </center>
+      </div>
+      </center>
+      <div class="modal-body"> 
+    
+       <!-- dentro del Modal con formulario--> 
+        <form:form method="post" modelAttribute="agentes" action="/c15/addAgente">
+	<table class="table">
+		 
+		<tr>
+		<form:hidden path="idAgente" />
+          <td><form:label path="nombre">Nombre:</form:label></td>
+          <td><form:input class="form-control" path="nombre" size="30" maxlength="30"></form:input></td>
+        </tr>
+		<tr>
+		  <td><form:label path="direccion">Direccion:</form:label></td>
+          <td><form:input class="form-control" path="direccion" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="lat">lat:</form:label></td>
+          <td><form:input class="form-control" path="lat" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="lng">lng:</form:label></td>
+          <td><form:input class="form-control" path="lng" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="tipo">tipo:</form:label></td>
+          <td><form:input class="form-control" path="tipo" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="sistema">sistema:</form:label></td>
+          <td><form:input class="form-control" path="sistema" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="seguridad">seguridad:</form:label></td>
+          <td><form:input class="form-control" path="seguridad" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="horario">horario:</form:label></td>
+          <td><form:input class="form-control" path="horario" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="descripcion">descripcion:</form:label></td>
+          <td><form:input class="form-control" path="descripcion" size="30" maxlength="30"></form:input></td>
+		</tr> 
+		  
+		
+      </div>
+	</table> 
+	
+	 <div class="modal-footer">
+      <input type="submit" class="btn btn-primary" value="Aceptar" />
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+</form:form>
+ 
+</div>
+     
+    </div>
+  </div>
+</div> <!-- -->
+          
+       
+      <!--dato que se muestra al ingresar a la url de 'edit' y asi poder validarlo 
+        y mostrar el modal--> 
+ 		<input type="hidden" id="txt" value=${textomodal} ></>
+      
       <!--cart inicio-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Data Base</div>
         <div class="card-body">
           <div class="table-responsive">
+           <c:if test="${!empty listOfAgentes}">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
+                  <th>Id</th>
                   <th>Nombre</th>
                   <th>Dirección</th>
-                  <th>Distrito</th>
-                  <th>Operatividad</th>
-                  <th colspan="3">CRUD</th> 
+                  <th>Lat</th>
+                  <th>Lng</th>
+                  <th>Tipo</th>
+                  <th>Sistema</th>
+                  <th>Seguridad</th>
+                  <th>Horario</th>
+                  <th>Descripcion</th>
+                  <th colspan="2"></th> 
                 </tr>
               </thead>
                
               <tbody> 
-                <tr>
-                  <td>La merced</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>Activo</td>
-                  <td><button class="btn btn-secondary">Modificar</button></td>
-                  <td><button class="btn btn-info">Ver</button></td>
-                  <td><button class="btn btn-danger">Eliminar</button></td>
+
+                <c:forEach items="${listOfAgentes}" var="agentes">
+				<tr>
+					<td>${agentes.idAgente}</td>
+					<td>${agentes.nombre}</td>
+					<td>${agentes.direccion}</td>
+					<td>${agentes.lat}</td>
+					<td>${agentes.lng}</td>
+					<td>${agentes.tipo}</td>
+					<td>${agentes.sistema}</td>
+					<td>${agentes.seguridad}</td>
+					<td>${agentes.horario}</td>
+					<td>${agentes.descripcion}</td>
+                  <!--<td><button class="btn btn-secondary">Modificar</button></td>  <td><button type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#crearCardModal">Edit</button></td>
+                  <td><button class="btn btn-danger">Eliminar</button></td>-->
+                  <td><a class="btn btn-secondary" href="<c:url value='/updateAgente/${agentes.idAgente}' />" >Editar</a></td>
+                  
+			      <td><a class="btn btn-danger" href="<c:url value='/deleteAgente/${agentes.idAgente}' />" >Delete</a></td>
                 </tr>
+				</c:forEach>
                 
-                <tr>
-                  <td>Donna Snider</td>
-                  <td>Customer Support</td>
-                  <td>New York</td>
-                  <td>Desactivo</td>
-                  <td><button class="btn btn-secondary">Modificar</button></td>
-                  <td><button class="btn btn-info">Ver</button></td>
-                  <td><button class="btn btn-danger">Eliminar</button></td>
-                </tr>
               </tbody>
             </table>
+            </c:if>
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
-
-
- 
+        
 
         <!--card fin-->  
     <footer class="sticky-footer">
@@ -150,6 +245,7 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="<c:url value="/resources/vendor/jquery/jquery.min.js"/>"></script>
@@ -159,10 +255,15 @@
      <script src="<c:url value="/resources/vendor/jquery/jquery-easing/jquery.easing.min.js"/>"></script>
     <!-- Custom scripts for all pages-->
     <script src="<c:url value="/resources/js/sb-admin.min.js"/>"></script> 
-  </div>
-
-<script src="<c:url value="/resources/js/jquery-1.10.2.js"/>"></script> 
+   
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>  
+<script type="text/javascript">
+ 
+if ($("#txt").val()=='verdadero'){
+    $('#crearCardModal').modal('show'); 
+    }    
+    
+</script>
  
 </h:body>
 

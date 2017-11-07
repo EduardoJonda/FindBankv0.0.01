@@ -37,7 +37,7 @@ public class AdmiLoginController {
 	    Admi admin = admiService.validateAdmi(login);
 
 	    if (null != admin) {
-	      mav = new ModelAndView("welcomeadmi");
+	      mav = new ModelAndView("redirect:administrador");
 	      mav.addObject("nombre", admin.getFirstname());
 	    } else {
 	      mav = new ModelAndView("login");
