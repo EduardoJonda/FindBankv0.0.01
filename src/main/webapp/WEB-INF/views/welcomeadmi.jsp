@@ -40,7 +40,7 @@
   <!-- Navigation-->
    
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="/c15/administrador">Find Bank</a>
+    <a class="navbar-brand" href="/c15/administrador"  style="font-size:18px;">Find Bank</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,7 +50,7 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="/c15/administrador">
             <i class="fa fa-fw fa-area-chart"></i>
-            <span class="nav-link-text">Agentes</span>
+            <span class="nav-link-text"  style="font-size:18px;">Agentes</span>
           </a>
         </li>
         
@@ -60,7 +60,7 @@
    
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Cerrar Sesión</a>
+            <i  style="font-size:18px;" class="fa fa-fw fa-sign-out"></i>Cerrar Sesión</a>
         </li>
         <!--logout fin-->
       </ul>
@@ -78,9 +78,9 @@
       </ol>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="/administrador">Find Bank</a>
+          <a href="/administrador"   style="font-size:15px;"><strong>Find Bank</strong></a>
         </li>
-        <li class="breadcrumb-item active">Agentes</li>
+        <li class="breadcrumb-item active"  style="font-size:15px;"><strong>Agentes</strong></li>
       </ol>
       <h1>Agentes</h1>
       <hr>
@@ -154,7 +154,13 @@
      
     </div>
   </div>
-</div> <!-- -->
+</div> <!--<div class="form-group">
+            <label for="text" class="form-control-label">Operatividad:</label>
+            <select class="form-control">
+              <option>Activo</option>
+              <option>Desactivo</option>
+            </select> 
+          </div> -->
           
        
       <!--dato que se muestra al ingresar a la url de 'edit' y asi poder validarlo 
@@ -164,23 +170,23 @@
       <!--cart inicio-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Base</div>
+          <i style="font-size:17px;" class="fa fa-table"></i><strong style="font-size:16px;"> Lista de Agentes</strong></div>
         <div class="card-body">
           <div class="table-responsive">
            <c:if test="${!empty listOfAgentes}">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"  style="font-size:16px;">
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nombre</th>
-                  <th>Dirección</th>
-                  <th>Lat</th>
-                  <th>Lng</th>
-                  <th>Tipo</th>
-                  <th>Sistema</th>
-                  <th>Seguridad</th>
-                  <th>Horario</th>
-                  <th>Descripcion</th>
+                  <th style="font-size:20px;">Id</th>
+                  <th style="font-size:20px;">Nombre</th>
+                  <th style="font-size:20px;">Dirección</th>
+                  <th style="font-size:20px;">Lat</th>
+                  <th style="font-size:20px;">Lng</th>
+                  <th style="font-size:20px;">Tipo</th>
+                  <th style="font-size:20px;">Sistema</th>
+                  <th style="font-size:20px;">Seguridad</th>
+                  <th style="font-size:20px;">Horario</th>
+                  <th style="font-size:20px;">Descripcion</th>
                   <th colspan="2"></th> 
                 </tr>
               </thead>
@@ -189,21 +195,21 @@
 
                 <c:forEach items="${listOfAgentes}" var="agentes">
 				<tr>
-					<td>${agentes.idAgente}</td>
-					<td>${agentes.nombre}</td>
-					<td>${agentes.direccion}</td>
-					<td>${agentes.lat}</td>
-					<td>${agentes.lng}</td>
-					<td>${agentes.tipo}</td>
-					<td>${agentes.sistema}</td>
-					<td>${agentes.seguridad}</td>
-					<td>${agentes.horario}</td>
-					<td>${agentes.descripcion}</td>
+					<td style="font-size:16px;">${agentes.idAgente}</td>
+					<td style="font-size:16px;">${agentes.nombre}</td>
+					<td style="font-size:16px;">${agentes.direccion}</td>
+					<td style="font-size:16px;">${agentes.lat}</td>
+					<td style="font-size:16px;">${agentes.lng}</td>
+					<td style="font-size:16px;">${agentes.tipo}</td>
+					<td style="font-size:16px;">${agentes.sistema}</td>
+					<td style="font-size:16px;">${agentes.seguridad}</td>
+					<td style="font-size:16px;">${agentes.horario}</td>
+					<td style="font-size:16px;">${agentes.descripcion}</td>
                   <!--<td><button class="btn btn-secondary">Modificar</button></td>  <td><button type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#crearCardModal">Edit</button></td>
                   <td><button class="btn btn-danger">Eliminar</button></td>-->
-                  <td><a class="btn btn-secondary" href="<c:url value='/updateAgente/${agentes.idAgente}' />" >Editar</a></td>
+                  <td  style="font-size:20px;"><a class="btn btn-secondary" href="<c:url value='/updateAgente/${agentes.idAgente}' />" ><strong style="font-size:16px;" >Editar</strong></a></td>
                   
-			      <td><a class="btn btn-danger" href="<c:url value='/deleteAgente/${agentes.idAgente}' />" >Delete</a></td>
+			      <td  style="font-size:16px;"><a class="btn btn-danger" href="<c:url value='/deleteAgente/${agentes.idAgente}' />" ><strong style="font-size:16px;" >Delete</strong></a></td>
                 </tr>
 				</c:forEach>
                 
@@ -212,7 +218,7 @@
             </c:if>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <div class="card-footer small text-muted"  style="font-size:18px;">Updated yesterday at 11:59 PM</div>
       </div>
         
 
@@ -220,7 +226,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Find Bank © Website 2017</small>
+          <small  style="font-size:18px;">Find Bank © Website 2017</small>
         </div>
       </div>
     </footer>

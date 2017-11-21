@@ -40,7 +40,7 @@ public class AdmiLoginController {
 	      mav = new ModelAndView("redirect:administrador");
 	      mav.addObject("nombre", admin.getFirstname());
 	    } else {
-	      mav = new ModelAndView("login");
+	      mav = new ModelAndView("loginadmi");
 	      mav.addObject("message", "El usuario o contraseña ingresado es invalido");
 	    }
 	    return mav;

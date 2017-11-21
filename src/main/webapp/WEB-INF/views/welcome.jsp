@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:f="http://java.sun.com/jsf/core"
@@ -254,30 +257,8 @@
       <div class="modal-body">
       
       <div id="cajapadre">
-       <!-- dentro del Modal con formulario--> 
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Nombre:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Dirreción:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Distrito:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="text" class="form-control-label">Operatividad:</label>
-            <select class="form-control">
-              <option>Activo</option>
-              <option>Desactivo</option>
-            </select> 
-          </div>
-        </form>
-          <!-- dentro del Modal con mapa--> 
-        <div class="container">
+      
+       <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>Obtener coordenadas con un marcador</h3>
@@ -287,19 +268,72 @@
           <div id="map"></div>
         </div>
       </div><br>
-      <p>Coordenadas: <input type="text" id="coords" />
+      <p>Coordenadas: <input type="hidden" id="coords" />
       <p>Latitud: <input type="hidden" id="lat" />
-      <p>Longitud: <input type="text" id="long" />
-      <p>.</p>
+      <p>Longitud: <input type="hidden" id="long" />
+       
         </div> 
+      
+      
+       <!-- dentro del Modal con formulario--> 
+        <form:form method="post" modelAttribute="agentes" action="/c15/addAgenteUser">
+	<table class="table"> 
+		<tr>
+		<form:hidden path="idAgente" />
+          <td><form:label path="nombre">Nombre:</form:label></td>
+          <td><form:input class="form-control" path="nombre" size="30" maxlength="30"></form:input></td>
+        </tr>
+		<tr>
+		  <td><form:label path="direccion">Direccion:</form:label></td>
+          <td><form:input class="form-control" path="direccion" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="lat">lat:</form:label></td>
+          <td><form:input class="form-control" path="lat" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="lng">lng:</form:label></td>
+          <td><form:input class="form-control" path="lng" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="tipo">tipo:</form:label></td>
+          <td><form:input class="form-control" path="tipo" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="sistema">sistema:</form:label></td>
+          <td><form:input class="form-control" path="sistema" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="seguridad">seguridad:</form:label></td>
+          <td><form:input class="form-control" path="seguridad" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="horario">horario:</form:label></td>
+          <td><form:input class="form-control" path="horario" size="30" maxlength="30"></form:input></td>
+		</tr>
+		<tr>
+		  <td><form:label path="descripcion">descripcion:</form:label></td>
+          <td><form:input class="form-control" path="descripcion" size="30" maxlength="30"></form:input></td>
+		</tr> 
+		  
+		
+      </div>
+	</table> 
+	
+	
+	 <div class="modal-footer">
+      <input type="submit" class="btn btn-primary" value="Aceptar" />
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div> 
+        
+</form:form>
+          <!-- dentro del Modal con mapa--> 
+       
         
 		</div> 
          
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Crear</button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -404,7 +438,8 @@ boton.onclick = function(e) {
     // creamos una etiqueta script
     var s = document.createElement("script");
     // indicamos en el atributo src el fichero que quieres cargar
-    s.src = "https://maps.googleapis.com/maps/api/js?callback=initMap";
+    //s.src = "https://maps.googleapis.com/maps/api/js?callback=initMap"; 
+    s.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCUtPyzBRpipnztN8w9nFA88QRBKbJp7ak&callback=initMap";
     // lo añadimos al documento (y se ejecuta automaticamente)
     document.querySelector("body").appendChild(s);
     // borra el script del documento (para evitar basura si se ejecuta multiples veces)

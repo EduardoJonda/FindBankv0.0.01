@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.findbank.c15.model.Agentes;
 import com.findbank.c15.model.Login;
 import com.findbank.c15.model.Usuario;
+import com.findbank.c15.service.AgentesService;
 import com.findbank.c15.service.UsuarioService;
 
 @Controller
 public class LoginController {
 
+	@Autowired
+	AgentesService agentesService;
+	
   @Autowired
   UsuarioService usuarioService;
   
@@ -51,14 +56,38 @@ public class LoginController {
     Usuario usuario = usuarioService.validateUser(login);
 
     if (null != usuario) {
-      mav = new ModelAndView("welcome");
-      mav.addObject("nombre", usuario.getFirstname());
+      mav = new ModelAndView("redirect:/welcome");
+    //  mav.addObject("nombre", usuario.getFirstname());
     } else {
-      mav = new ModelAndView("login");
-      mav.addObject("message", "El usuario o contraseña ingresado es invalido");
+      //mav = new ModelAndView("login");
+    	mav = new ModelAndView("login");
+    	mav.addObject("message", "El usuario o contraseña ingresado es invalido");
     }
     return mav;
   }
+  
+  @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+  public ModelAndView showWelcome(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView("welcome"); 
+    mav.addObject("agentes", new Agentes());
+    return mav;
+  }
+   
+  
+  @RequestMapping(value = "/addAgenteUser", method = RequestMethod.POST, headers = "Accept=application/json")
+	public String addCountry(@ModelAttribute("agentes") Agentes agentes) {	
+		if(agentes.getIdAgente()==0)
+		{
+			agentesService.addAgentes(agentes);
+		}
+		else
+		{	
+			agentesService.updateAgentes(agentes);
+		}
+		
+		return "redirect:/welcome";
+	}
+  
   
   @RequestMapping(value = "/welcome2", method = RequestMethod.GET)
   public ModelAndView showWelcome2(HttpServletRequest request, HttpServletResponse response) {
